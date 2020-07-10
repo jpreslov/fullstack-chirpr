@@ -5,8 +5,8 @@ import { useHistory } from 'react-router-dom'
 const Compose: React.FC<ComposeProps> = () => {
     const history = useHistory()
 
-    const [user, setUser] = useState<string>("");
-    const [text, setText] = useState<string>("");
+    const [userid, setUser] = useState<string>("");
+    const [content, setText] = useState<string>("");
   
     const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) =>
       setUser(e.target.value);
@@ -15,14 +15,14 @@ const Compose: React.FC<ComposeProps> = () => {
   
     const submitChirp = async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-      console.log({ user, text });
-      let res = await fetch("/api/chirps", {
+      let res = await fetch("/api/chirps/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ user, text }),
-      });
+        body: JSON.stringify({ userid, content }),
+      })
+      console.log(res)
   
       if (res.ok) {
         history.push("/");
@@ -38,7 +38,7 @@ const Compose: React.FC<ComposeProps> = () => {
             <form className="form-group p-3 shadow border">
               <label htmlFor="user">User</label>
               <input
-                value={user}
+                value={userid}
                 onChange={handleUsernameChange}
                 placeholder="Who are you?"
                 id="user"
@@ -47,7 +47,7 @@ const Compose: React.FC<ComposeProps> = () => {
               />
               <label htmlFor="text">Text</label>
               <textarea
-                value={text}
+                value={content}
                 onChange={handleTextChange}
                 rows={8}
                 placeholder="What's on your mind?"
