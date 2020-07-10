@@ -3,9 +3,10 @@ import type { TUsers } from '../models'
 
 const all = () => Query<Array<TUsers>>('SELECT id, username FROM users');
 const one = (userid: number) => Query<Array<TUsers>>('SELECT id, username FROM users WHERE id = ?', [userid])
+const newuser = (name: string) => Query<Array<TUsers>>('INSERT INTO users(name) VALUE (?)', [name])
 
 export default {
     all,
-    one
+    one,
+    newuser
 }
-

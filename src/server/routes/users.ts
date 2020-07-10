@@ -10,7 +10,6 @@ router.get('/:id?', async (req, res, next) => {
 		try {
 			const [user] = await db.users.one(id);
 			//DO NOT SEND A PASSWORD IN YOUR RESPONSE
-			delete user.password;
 			res.json(user);
 		} catch (error) {
 			next(error);

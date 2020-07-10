@@ -26,7 +26,6 @@ router.get("/:id?", async (req, res, next) => {
 // POST /api/chirps/
 router.post("/", async (req, res, next) => {
   const chirp = req.body;
-  console.log(chirp)
   try {
     const result = await db.chirps.insert(chirp.userid, chirp.content);
     res.json({ id: result.insertId });
