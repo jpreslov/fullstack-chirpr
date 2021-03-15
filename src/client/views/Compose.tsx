@@ -20,19 +20,11 @@ const Compose: React.FC<ComposeProps> = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, userid, content }),
+        body: JSON.stringify({ name, content }),
       })
-
-      let res2 = await fetch("/api/users/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name }),
-      })
-      console.log(res2)
+      console.log(res)
   
-      if (res.ok && res2.ok) {
+      if (res.ok) {
         history.push("/");
       } else {
         console.log("Something went wrong");
@@ -46,7 +38,7 @@ const Compose: React.FC<ComposeProps> = () => {
             <form className="form-group p-3 shadow border">
               <label htmlFor="user">User</label>
               <input
-                value={name}
+                value={userid}
                 onChange={handleUsernameChange}
                 placeholder="Who are you?"
                 id="user"

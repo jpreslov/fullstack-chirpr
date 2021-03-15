@@ -24,8 +24,8 @@ const one = (id: number) =>
 		[id]
 	);
 
-const insert = (userid: number, content: string) =>
-	Query<{ insertId: number }>(`INSERT INTO chirps (userid, content) VALUE (?)`, [[userid, content]]);
+const insert = (content: string, userid?: number) =>
+	Query<{ insertId: number }>(`INSERT INTO chirps (userid, content) VALUE (?)`, [userid, content]);
 
 const update = (id: number, content: string) => Query(`UPDATE chirps SET content = ? WHERE id = ?`, [content, id]);
 

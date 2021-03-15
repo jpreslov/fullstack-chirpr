@@ -24,4 +24,16 @@ router.get('/:id?', async (req, res, next) => {
 	}
 });
 
+// POST /api/users/
+router.post("/", async (req, res, next) => {
+	const user = req.body;
+	try {
+	  const result = await db.users.newuser(user.name);
+	  res.json({ username: user.name });
+	} catch (error) {
+	  next(error);
+	}
+  });
+  
+
 export default router;

@@ -16,11 +16,12 @@ const Home: React.FC<HomeProps> = () => {
   }, []);
   return (
     <>
-      <main className="container">
-        <section className="row my-2 justify-content-center">
-          <Link className="btn btn-sm btn-outline-info mx-1" to={`/compose`}>
+    <Link className="btn btn-sm btn-outline-info mx-1" to={`/compose`}>
             Compose
           </Link>
+      <main className="container">
+        <section className="row my-2 justify-content-center">
+          
           {chirps.map((chirp) => (
             <HomeChirpCard key={`chirp-card-home-${chirp.id}`} chirp={chirp} />
           ))}
